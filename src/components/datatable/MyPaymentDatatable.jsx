@@ -5,10 +5,12 @@ import { myuserColumns, myuserRows } from "../../mydatatablesource";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 import axios from "axios";
-import AllDoctors from "../../pages/doctor/AllDoctors";
 
 
-const MyDatatable = () => {
+import AllPayments from '../../pages/payment/AllPayments'
+
+
+const MyPaymentDatatable  = () => {
   const [data, setData] = useState(userRows);
   const [mydata,setMyData]=useState([])
   const [doctorid,setDoctorId]=useState();
@@ -34,9 +36,9 @@ const MyDatatable = () => {
         getRowId={(row) => row._id}
         
       /> */}
-      <AllDoctors />
+      <AllPayments />
     </div>
   );
 };
 
-export default MyDatatable;
+export default MyPaymentDatatable ;

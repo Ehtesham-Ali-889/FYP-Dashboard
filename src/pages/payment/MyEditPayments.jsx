@@ -1,10 +1,11 @@
-import "./doctor.scss"
+import "./Payments.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 // import Datatable from "../../components/datatable/Datatable"
-import MyDatatable from "../../components/datatable/MyDatatable"
-import AddSingleDoctor from "./AddSingleDoctor"
-const AddDoctor = () => {
+
+// import EditSingleAppointments from "./EditSingleAppointments"
+import EditSinglePayments from './EditSinglePayments'
+const MyEditPayments = () => {
 
 
   return (
@@ -12,10 +13,11 @@ const AddDoctor = () => {
       <Sidebar/>
       <div className="listContainer">
         <Navbar/>
-        <AddSingleDoctor />
+        <EditSinglePayments />
+
       </div>
     </div>
   )
 }
 
-export default AddDoctor
+export default MyEditPayments

@@ -5,7 +5,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { getUsers, editUser } from '../../Service/api';
+import { getPatients, editPatien } from '../../Service/patientapi';
 import axios from 'axios';
 // import { useHistory } from 'react-router-dom';
 
@@ -13,7 +13,7 @@ const initialValue = {
     name: '',
     username: '',
     email: '',
-    phone: ''
+    age: ''
 }
 
 const Container = styled(FormGroup)`
@@ -40,26 +40,28 @@ box-shadow: 0 8px 32px 0 rgba( 0, 0, 0, 0.18 );
 `;
 
 
-const EditUser = () => {
+const EditSingleAppointments = () => {
     const [user, setUser] = useState(initialValue);
-    const { name, username, email, phone } = user;
+    const { namedoctor, date, time, description } = user;
     const navigate = useNavigate();
      const { id } = useParams("");
     console.log(id);
     const [dname,setDName]=useState('');
-    const [demail,setDEmail]=useState('');
-    const [dexperience,setDExperience]=useState('');
+    const [mydate,setMyDate]=useState('');
+    const [mytime,setMyTime]=useState('');
+    { /* const [dexperience,setDExperience]=useState(''); */}
 
    
     const getdata = async () => {
-        const response = await fetch(`http://localhost:3010/doctor/getuser/${id}`)
+        const response = await fetch(`http://localhost:3010/appointment/getuser/${id}`)
       const data = await response.json()
       console.log(data);
     //   console.log("Email"+data.email)
-      setDName(data.name);
-      setDEmail(data.email);
-      setDExperience(data.experience);
-        // const res = await axios.get(`http://localhost:3010/doctor/getuser/${id}`)
+      setDName(data.namedoctor);
+      setMyDate(data.date);
+      setMyTime(data.time);
+      {/* setDExperience(data.experience); */}
+        // const res = await axios.get(`http://localhost:3010/patient/getuser/${id}`)
 
         // const data = await res.json();
         // console.log(data);
@@ -100,19 +102,19 @@ const EditUser = () => {
     // }
     const updateuser = async(e)=>{
 
-        const res2 = await fetch(`http://localhost:3010/doctor/updateuser/${id}`,{
+        const res2 = await fetch(`http://localhost:3010/appointment/updateuser/${id}`,{
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json"
             },
             body:JSON.stringify({
-                name:dname,email:demail,experience:dexperience
+                name:dname,date:mydate,time:mytime
             })
         });
 
         const data2 = await res2.json();
         console.log(data2);
-        navigate("/doctor")
+        navigate("/appointments")
     }
 
     const onValueChange = (e) => {
@@ -130,7 +132,7 @@ const EditUser = () => {
                     label="Name"
                     id="outlined-start-adornment"
                     sx={{ m: 1 }}
-                    onChange={(e) => onValueChange(e)} name='name' value={dname}
+                    onChange={(e) => onValueChange(e)} name='namedoctor' value={dname}
                     InputProps={{
                         startAdornment: <InputAdornment position="start"><AccountCircle color="primary" /></InputAdornment>,
                     }}
@@ -149,7 +151,18 @@ const EditUser = () => {
                     label="Email"
                     id="outlined-start-adornment"
                     sx={{ m: 1 }}
-                    onChange={e => setDEmail(e.target.value)} name='email' value={demail}
+                    onChange={e => setMyDate(e.target.value)} name='date' value={mydate}
+                    InputProps={{
+                        startAdornment: <InputAdornment position="start"><AccountCircle color="primary" /></InputAdornment>,
+                    }}
+                />
+            </FormControl>
+            <FormControl>
+                <TextField
+                    label="Age"
+                    id="outlined-start-adornment"
+                    sx={{ m: 1 }}
+                    onChange={e => setMyTime(e.target.value)} name='time' value={mytime}
                     InputProps={{
                         startAdornment: <InputAdornment position="start"><AccountCircle color="primary" /></InputAdornment>,
                     }}
@@ -159,7 +172,7 @@ const EditUser = () => {
                 <InputLabel htmlFor="my-input">Email</InputLabel>
                 <Input onChange={e => setDEmail(e.target.value)} name='email' value={demail} id="my-input" aria-describedby="my-helper-text" />
             </FormControl> */}
-            <FormControl>
+            {/* <FormControl>
                 <TextField
                     label="Experience"
                     id="outlined-start-adornment"
@@ -169,17 +182,17 @@ const EditUser = () => {
                         startAdornment: <InputAdornment position="start"><AccountCircle color="primary" /></InputAdornment>,
                     }}
                 />
-            </FormControl>
+            </FormControl> */}
             { /* <FormControl>
                 <InputLabel htmlFor="my-input">Experience</InputLabel>
                 <Input onChange={e => setDExperience(e.target.value)} name='experience' value={dexperience} id="my-input" aria-describedby="my-helper-text" />
             </FormControl> */}
             <FormControl style={{display:"flex",flexDirection:"row",justifyContent:"space-evenly"}}>
-                <Button variant="outlined" color="primary" component={Link} to={`/doctor`}>Cancel</Button>
+                <Button variant="outlined" color="primary" component={Link} to={`/appointments`}>Cancel</Button>
                 <Button variant="outlined" color="success" onClick={(e)=>updateuser(e)} >Submit</Button>
             </FormControl>
         </Container>
     )
 }
 
-export default EditUser;
+export default EditSingleAppointments;

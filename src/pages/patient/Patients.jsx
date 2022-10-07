@@ -1,21 +1,20 @@
-import "./doctor.scss"
+import "./patient.scss"
 import Sidebar from "../../components/sidebar/Sidebar"
 import Navbar from "../../components/navbar/Navbar"
 // import Datatable from "../../components/datatable/Datatable"
-import MyDatatable from "../../components/datatable/MyDatatable"
-import AddSingleDoctor from "./AddSingleDoctor"
-const AddDoctor = () => {
 
+import MyPatientDatatable from "../../components/datatable/MyPatientDatatable"
+const Patients = () => {
 
   return (
     <div className="list">
       <Sidebar/>
       <div className="listContainer">
-        <Navbar/>
-        <AddSingleDoctor />
+        {/* <Navbar/> */}
+        <MyPatientDatatable/>
       </div>
     </div>
   )
 }
 
-export default AddDoctor
+export default Patients

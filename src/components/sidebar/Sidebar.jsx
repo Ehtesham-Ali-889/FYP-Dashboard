@@ -21,17 +21,19 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">lamadmin</span>
+          <span className="logo">Admin App</span>
         </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <p className="title">LISTS</p>
           <Link to="/doctor" style={{ textDecoration: "none" }}>
             <li>
@@ -39,26 +41,29 @@ const Sidebar = () => {
               <span>Doctor</span>
             </li>
           </Link>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/patient" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Patients</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Appointments</span>
-          </li>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/appointments" style={{ textDecoration: "none" }}>
+              <li>
+                <CreditCardIcon className="icon" />
+                <span>Appointments</span>
+              </li>
+          </Link>
+          
+          <Link to="/payments" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Payments</span>
             </li>
           </Link>
-          <li>
+          {/* <li>
             <CreditCardIcon className="icon" />
             <span>Orders</span>
-          </li>
+          </li> */}
           {/* <li>
             <LocalShippingIcon className="icon" />
             <span>Delivery</span>
@@ -90,10 +95,13 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li> */}
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Logout</span>
-          </li>
+          <Link to="/login" style={{ textDecoration: "none" }}>
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Logout</span>
+            </li>
+          </Link>
+          
         </ul>
       </div>
       <div className="bottom">

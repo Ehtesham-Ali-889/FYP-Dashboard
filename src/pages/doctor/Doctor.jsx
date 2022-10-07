@@ -60,7 +60,7 @@ const Doctor = () => {
     <div className="list">
       <Sidebar/>
       <div className="listContainer">
-        <Navbar/>
+        {/* <Navbar/> */}
         <MyDatatable/>
       </div>
     </div>
